@@ -452,7 +452,7 @@ class RelationTagger(pl.LightningModule):
                 f"Val. top score: {self.validation_top_score}, current val. score: {validation_score}"
             )
             print(f"Epoch: {self.current_epoch}, validation score_dict")
-            pprint(f"{validation_score_dict}")
+            pprint(validation_score_dict)
 
             # 3. Update best validation score
             if self.validation_top_score is None:
@@ -472,7 +472,7 @@ class RelationTagger(pl.LightningModule):
                 and self.current_epoch > 0
             ):
                 path_save_model = (
-                    Path(self.tparam.path_save_model_dir) / self.current_epoch
+                    Path(self.tparam.path_save_model_dir) / str(self.current_epoch)
                 )
                 os.makedirs(path_save_model, exist_ok=True)
                 gu.save_pytorch_model(path_save_model, self)
